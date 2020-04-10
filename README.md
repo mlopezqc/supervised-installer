@@ -43,6 +43,7 @@ curl -sL https://raw.githubusercontent.com/home-assistant/supervised-installer/m
 | -d \| --data-share | $PREFIX/share/hassio | data folder for hass.io installation                   |
 | -p \| --prefix     | /usr                 | Binary prefix for hass.io installation                 |
 | -s \| --sysconfdir | /etc                 | Configuration directory for hass.io installation       |
+| -P \| --proxy      | ""                   | Proxy configuration, like "http://user:pass@host:port  |
 
 you can set these parameters by appending ` -- <parameter> <value>` like:
 
