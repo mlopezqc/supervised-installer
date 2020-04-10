@@ -9,11 +9,11 @@ DOCKER_BINARY=/usr/bin/docker
 DOCKER_REPO=homeassistant
 DOCKER_SERVICE=docker.service
 URL_VERSION="https://version.home-assistant.io/stable.json"
-URL_HA="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files/ha"
-URL_BIN_HASSIO="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files/hassio-supervisor"
-URL_BIN_APPARMOR="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files/hassio-apparmor"
-URL_SERVICE_HASSIO="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files/hassio-supervisor.service"
-URL_SERVICE_APPARMOR="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files/hassio-apparmor.service"
+URL_HA="https://raw.githubusercontent.com/mlopezqc/supervised-installer/master/files/ha"
+URL_BIN_HASSIO="https://raw.githubusercontent.com/mlopezqc/supervised-installer/master/files/hassio-supervisor"
+URL_BIN_APPARMOR="https://raw.githubusercontent.com/mlopezqc/supervised-installer/master/files/hassio-apparmor"
+URL_SERVICE_HASSIO="https://raw.githubusercontent.com/mlopezqc/supervised-installer/master/files/hassio-supervisor.service"
+URL_SERVICE_APPARMOR="https://raw.githubusercontent.com/mlopezqc/supervised-installer/master/files/hassio-apparmor.service"
 URL_APPARMOR_PROFILE="https://version.home-assistant.io/apparmor.txt"
 
 # Check env
@@ -59,6 +59,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         -s|--sysconfdir)
             SYSCONFDIR=$2
+            shift
+            ;;
+        --P|--proxy)
+            PROXY=$2
             shift
             ;;
         *)
@@ -172,6 +176,7 @@ if command -v apparmor_parser > /dev/null 2>&1; then
     sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}/sbin/hassio-apparmor"
     sed -i -e "s,%%DOCKER_SERVICE%%,${DOCKER_SERVICE},g" \
 	   -e "s,%%HASSIO_APPARMOR_BINARY%%,${PREFIX}/sbin/hassio-apparmor,g" \
+	   -e "s,%%PROXY%%,${PROXY},g" \
 	   "${SYSCONFDIR}/systemd/system/hassio-apparmor.service"
 
     chmod a+x "${PREFIX}/sbin/hassio-apparmor"

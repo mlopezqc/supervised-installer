@@ -34,6 +34,8 @@ runSupervisor() {
         -e SUPERVISOR_SHARE="${HASSIO_DATA}" \
         -e SUPERVISOR_NAME=hassio_supervisor \
         -e HOMEASSISTANT_REPOSITORY="${HOMEASSISTANT}" \
+        -e HTTP_PROXY="${HTTP_PROXY}" \
+        -e HTTPS_PROXY="${HTTPS_PROXY}" \
         "${SUPERVISOR}"
 }
 

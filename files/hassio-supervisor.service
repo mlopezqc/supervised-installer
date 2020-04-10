@@ -10,6 +10,8 @@ RestartSec=5s
 ExecStartPre=-%%DOCKER_BINARY%% stop hassio_supervisor
 ExecStart=%%HASSIO_BINARY%%
 ExecStop=-%%DOCKER_BINARY%% stop hassio_supervisor
+Environment=HTTP_PROXY=%%PROXY%%
+Environment=HTTPS_PROXY=%%PROXY%%
 
 [Install]
 WantedBy=multi-user.target
