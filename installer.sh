@@ -61,7 +61,7 @@ while [[ $# -gt 0 ]]; do
             SYSCONFDIR=$2
             shift
             ;;
-        --P|--proxy)
+        -P|--proxy)
             PROXY=$2
             shift
             ;;
